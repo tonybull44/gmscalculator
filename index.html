@@ -947,10 +947,10 @@ a,button{-webkit-tap-highlight-color:transparent}
       </div>
 
       <div class="cstats rise d4">
-        <div class="cstat"><div class="cnum"><span class="cn" data-to="5">5</span></div><p>lives por semana</p></div>
-        <div class="cstat"><div class="cnum"><span class="cn" data-to="3">3</span></div><p>países: México, Ecuador y Colombia</p></div>
-        <div class="cstat"><div class="cnum">$<span class="cn" data-to="500">500</span></div><p>USD para activar el Club sin costo</p></div>
-        <div class="cstat"><div class="cnum"><span class="cn" data-to="9">9</span></div><p>meses de track record auditado para fondeo</p></div>
+        <div class="cstat"><div class="cnum"><span class="cn" data-to="500">500</span>+</div><p>Usuarios de Global Macro Terminal</p></div>
+        <div class="cstat"><div class="cnum"><span class="cn" data-to="6">6</span></div><p>Portafolios en seguimiento</p></div>
+        <div class="cstat"><div class="cnum">$<span class="cn" data-to="4.8" data-dec="1">4.8</span>M</div><p>USD en capital bajo gestión</p></div>
+        <div class="cstat"><div class="cnum"><span class="cn" data-to="3">3</span></div><p>Países con presencia</p></div>
       </div>
       <div class="lmq rise d4" aria-label="Infraestructura y tecnología con la que operamos">
         <p class="lmq-k">Infraestructura y tecnología con la que operamos</p>
@@ -1529,7 +1529,7 @@ plan(1);
   if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
   const ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2, D=3000;
   const run=el=>{const to=+el.dataset.to;const t0=performance.now();
-    const f=now=>{const p=Math.min(1,(now-t0)/D);el.textContent=Math.round(to*ease(p)).toLocaleString('es-MX');if(p<1)requestAnimationFrame(f)};
+    const dec=+(el.dataset.dec||0);const f=now=>{const p=Math.min(1,(now-t0)/D);el.textContent=dec?(to*ease(p)).toFixed(dec):Math.round(to*ease(p)).toLocaleString('es-MX');if(p<1)requestAnimationFrame(f)};
     el.textContent='0';requestAnimationFrame(f)};
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){run(e.target);io.unobserve(e.target)}}),{threshold:.4});
   els.forEach(el=>io.observe(el));
