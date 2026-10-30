@@ -24,7 +24,7 @@ a{color:inherit}
 .svg-hidden{position:absolute;width:0;height:0}
 
 /* Fondo de mercurio (Neural Access · 21st.dev) */
-.stage{position:fixed;inset:0;z-index:0;filter:url(#gooey);opacity:.55;pointer-events:none}
+.stage{position:fixed;inset:0;z-index:0;overflow:hidden;filter:url(#gooey);opacity:.55;pointer-events:none}
 .blob{position:absolute;border-radius:50%;filter:blur(20px);animation:float 20s infinite alternate ease-in-out;
   background:linear-gradient(135deg,var(--mercury),#7d8290);
   box-shadow:inset -10px -10px 20px rgba(0,0,0,.5),10px 10px 30px rgba(255,255,255,.18);transition:margin .1s ease-out}
@@ -85,7 +85,9 @@ a{color:inherit}
 .fine{margin-top:18px;font-size:11.5px;line-height:1.5;color:rgba(255,255,255,.38)}
 
 @media (max-width:520px){
-  .top .logo img{height:38px}
+  .lang button{padding:9px 12px;font-size:12px}
+  .footer-nav a{padding:10px 0}
+  .top .logo img{height:44px}
   .back{display:none}
   .soon{margin:26px 0 32px}
 }

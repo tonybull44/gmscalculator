@@ -824,9 +824,21 @@ h1,.h2,.fx3-tl h2,.pull2-a,.pull2-b,.net h2{padding-bottom:.04em}
 .lang button:hover{color:#1e1c1c}
 .lang button.on{background:#1e1c1c;color:#fff}
 .lang button:focus-visible{outline:2px solid #2b44d3;outline-offset:2px}
+/* ===== Celular · repaso final ===== */
+@media (max-width:767px){
+  .lang button{padding:9px 12px;font-size:12px}
+  .dm-mlang{padding:14px 0 6px}
+  .ticker{font-size:11px}.meta{font-size:11px}.trl{font-size:11px}
+  .tl5-pill{font-size:11.5px}
+  .tl5-link{padding:8px 0}
+  .fq-in a{display:inline-block;padding:6px 0}
+  .tl{min-height:1.2em}
+}
 .dm-actions .lang{margin-right:6px}
 .dm-mlang{display:flex;justify-content:center;padding:12px 0 4px}
-@media (max-width:900px){.dm-actions .lang{display:none}}
+@media (max-width:900px){.dm-actions{gap:8px}.dm-actions .lang{margin-right:0}}
+@media (max-width:520px){.dm-actions .lang button{padding:9px 9px;font-size:11.5px}}
+@media (max-width:359px){.dm-actions .lang button{padding:8px 7px;font-size:11px}}
 /* ===== Optimización para celular ===== */
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 html,body{margin:0;overflow-x:clip}
@@ -890,7 +902,6 @@ a,button{-webkit-tap-highlight-color:transparent}
     <section class="dm-acc"><button type="button" aria-expanded="false"><span>Recursos</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button><div class="dm-acc-body" data-tpl="2"></div></section>
     <a class="dm-mlink" href="#planes">Planes</a>
     <a class="dm-mlink" href="login.html">Iniciar sesión</a>
-    <div class="dm-mlang"><div class="lang" role="group" aria-label="Idioma / Language"><button type="button" data-lang="es">ES</button><button type="button" data-lang="en">EN</button><button type="button" data-lang="pt">PT</button></div></div>
     <a class="btn btn-black dm-mcta" href="https://comunidad.globalmacroterminal.com">Únete al Club de Traders</a>
   </div>
 </header>
@@ -1573,6 +1584,11 @@ plan(1);
       setTimeout(()=>{clip.style.transition='none';clip.style.width='auto'},T+20)},T);
   }
   setInterval(step,3000+1600);
+  const tlBox=clip.closest('.tl');
+  function fit(){tlBox.style.fontSize='';const avail=tlBox.parentElement.clientWidth-32;const tt=window.T||(x=>x);
+    const max=Math.max(...words.map(w=>measure(tt(w))))+10;const s=Math.min(1,avail/max);if(s<1)tlBox.style.fontSize=s.toFixed(3)+'em'}
+  fit();addEventListener('resize',fit);(window.GMS_HOOKS||[]).push(()=>requestAnimationFrame(fit));
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
 })();
 
 // Counting Number (21st.dev) — cifras del hero
