@@ -107,7 +107,8 @@ footer .risk{max-width:70ch;margin:14px auto 0;font-size:11.5px;color:rgba(255,2
 .next ul{margin:12px 0 0;padding:0;list-style:none;display:grid;gap:10px}
 .next li{display:flex;gap:10px;font-size:15px;line-height:1.5;color:rgba(255,255,255,.8)}
 .next li::before{content:"→";color:var(--orange);font-weight:700}
-.res-cta{width:100%;margin-top:26px}
+.res-cta{width:100%;margin-top:26px;background:#25d366!important;color:#06240f!important;box-shadow:0 12px 40px -10px rgba(37,211,102,.55)!important}
+.res-cta svg{flex:none}
 .res-note{margin-top:12px;font-size:13px;color:var(--faint);text-align:center}
 
 @media (max-width:760px){
@@ -131,7 +132,7 @@ footer .risk{max-width:70ch;margin:14px auto 0;font-size:11.5px;color:rgba(255,2
   <section class="hero wrap">
     <span class="eb">Club de Traders · Gratis</span>
     <h1>Diagnóstico <em>Trader Macro</em></h1>
-    <p class="sub">Descubre qué tipo de trader eres, en qué etapa estás y cuál es tu siguiente paso. Al terminar, entras gratis al grupo del Club de Traders.</p>
+    <p class="sub">Descubre qué tipo de trader eres, en qué etapa estás y cuál es tu siguiente paso. Al terminar, entras gratis al grupo de WhatsApp del Club de Traders.</p>
     <p class="dur">⏱ Duración: menos de 2 minutos</p>
     <button class="cta" type="button" data-start>Empezar mi diagnóstico →</button>
 
@@ -181,7 +182,7 @@ footer .risk{max-width:70ch;margin:14px auto 0;font-size:11.5px;color:rgba(255,2
 
 <script>
 (function(){
-  const JOIN='https://comunidad.globalmacroterminal.com';
+  const JOIN='https://chat.whatsapp.com/C3Ri1reaEli3UMuUoK0G9G';
   const Q=[
     {t:'¿Cuánto tiempo llevas operando en los mercados?',o:['Aún no opero','Menos de 1 año','Entre 1 y 3 años','Más de 3 años']},
     {t:'¿Cómo decides hoy tus operaciones?',o:['Todavía no sé por dónde empezar','Sigo señales o grupos de otras personas','Con análisis técnico (gráficos e indicadores)','Combino el gráfico con datos macroeconómicos']},
@@ -190,9 +191,9 @@ footer .risk{max-width:70ch;margin:14px auto 0;font-size:11.5px;color:rgba(255,2
     {t:'¿Qué te gustaría lograr en los próximos 12 meses?',o:['Aprender desde cero con una base sólida','Operar mi propia cuenta con un método','Profesionalizarme como trader','Llegar a gestionar capital']}
   ];
   const R=[
-    {min:0,name:'Explorador',em:'',p:'Estás en el mejor momento para empezar bien: antes de arriesgar dinero, entender qué mueve el precio te va a ahorrar muchos errores.',n:['Entra al Club de Traders y empieza por la introducción a la macroeconomía.','Conéctate a las sesiones abiertas para ver cómo se lee el mercado en vivo.','Haz tus preguntas en el grupo: ahí está la comunidad para acompañarte.']},
-    {min:6,name:'Operador en',em:'desarrollo',p:'Ya tienes experiencia, pero dependes del gráfico o de señales ajenas. El siguiente salto es sumar el contexto macro a tus decisiones.',n:['Entra al Club de Traders y revisa los canales de análisis macro y resultados.','Aprende a convertir tasas, inflación y empleo en un sesgo antes de operar.','Usa las sesiones en vivo para construir ideas con riesgo definido.']},
-    {min:11,name:'Trader',em:'Macro',p:'Ya piensas como trader macro. Lo que sigue es un proceso profesional, una comunidad exigente y el camino para escalar.',n:['Entra al Club de Traders y conecta con traders que operan la misma metodología.','Conoce Global Macro Terminal y el Acelerador para profundizar tu proceso.','Pregunta en el grupo por la ruta profesional y el Programa de Gestores.']}
+    {min:0,name:'Explorador',em:'',p:'Estás en el mejor momento para empezar bien: antes de arriesgar dinero, entender qué mueve el precio te va a ahorrar muchos errores.',n:['Entra al grupo de WhatsApp y activa tu acceso gratuito a la comunidad.','Conéctate a las sesiones abiertas para ver cómo se lee el mercado en vivo.','Empieza por la introducción a la macroeconomía y haz tus preguntas en el grupo.']},
+    {min:6,name:'Operador en',em:'desarrollo',p:'Ya tienes experiencia, pero dependes del gráfico o de señales ajenas. El siguiente salto es sumar el contexto macro a tus decisiones.',n:['Entra al grupo de WhatsApp y activa tu acceso a la comunidad del Club.','Aprende a convertir tasas, inflación y empleo en un sesgo antes de operar.','Usa las sesiones en vivo para construir ideas con riesgo definido.']},
+    {min:11,name:'Trader',em:'Macro',p:'Ya piensas como trader macro. Lo que sigue es un proceso profesional, una comunidad exigente y el camino para escalar.',n:['Entra al grupo de WhatsApp y conecta con traders que operan la misma metodología.','Conoce Global Macro Terminal y el Acelerador para profundizar tu proceso.','Pregunta en el grupo por la ruta profesional y el Programa de Gestores.']}
   ];
   const quiz=document.getElementById('quiz'),body=document.getElementById('qbody'),prog=document.getElementById('prog');
   const keepParams=u=>{try{const s=new URLSearchParams(location.search);const t=new URL(u);s.forEach((v,k)=>{if(/^utm_|^fbclid$|^gclid$/.test(k))t.searchParams.set(k,v)});return t.toString()}catch(e){return u}};
@@ -211,7 +212,7 @@ footer .risk{max-width:70ch;margin:14px auto 0;font-size:11.5px;color:rgba(255,2
   function result(){
     prog.style.width='100%';
     const score=ans.reduce((a,b)=>a+b,0);let r=R[0];R.forEach(x=>{if(score>=x.min)r=x});
-    body.innerHTML=`<div class="step"><span class="res-badge">Tu diagnóstico está listo</span><h2 class="res-name">${r.name}${r.em?` <em>${r.em}</em>`:''}</h2><p class="res-p">${r.p}</p><div class="next"><b>Tu siguiente paso</b><ul>${r.n.map(x=>`<li>${x}</li>`).join('')}</ul></div><a class="cta orange res-cta" href="${keepParams(JOIN)}">Unirme gratis al Club de Traders →</a><p class="res-note">Te registras en la comunidad y entras al grupo del Club de Traders.</p><button class="back" type="button" data-again>↺ Repetir diagnóstico</button></div>`;
+    body.innerHTML=`<div class="step"><span class="res-badge">Tu diagnóstico está listo</span><h2 class="res-name">${r.name}${r.em?` <em>${r.em}</em>`:''}</h2><p class="res-p">${r.p}</p><div class="next"><b>Tu siguiente paso</b><ul>${r.n.map(x=>`<li>${x}</li>`).join('')}</ul></div><a class="cta orange res-cta" href="${JOIN}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.4-.3z"/></svg>Entrar al grupo de WhatsApp</a><p class="res-note">Es gratis. En el grupo te damos la bienvenida y tu acceso a la comunidad del Club de Traders.</p><button class="back" type="button" data-again>↺ Repetir diagnóstico</button></div>`;
     body.querySelector('[data-again]').addEventListener('click',()=>{i=0;ans=[];render()});
     quiz.scrollTop=0;
   }
