@@ -94,6 +94,18 @@ footer .risk{max-width:70ch;margin:14px auto 0;font-size:11.5px;color:rgba(255,2
 .opt .l{flex:none;width:30px;height:30px;border-radius:8px;display:grid;place-items:center;font-family:var(--fm);font-weight:700;font-size:13px;background:rgba(255,255,255,.07);color:var(--dim)}
 .opt.sel{border-color:var(--blue-soft);background:rgba(43,68,211,.16)}
 .opt.sel .l{background:var(--blue-lt);color:#fff}
+.lead-sub{font-size:15.5px;line-height:1.6;color:var(--dim);margin:10px 0 0}
+.lf{display:grid;gap:12px;margin-top:24px}
+.lf input,.lf select{width:100%;box-sizing:border-box;background:var(--card);border:1px solid var(--line);border-radius:12px;color:#fff;font:400 16px var(--fb);padding:16px 16px;outline:none;transition:border-color .2s}
+.lf input::placeholder{color:rgba(255,255,255,.38)}
+.lf input:focus,.lf select:focus{border-color:var(--blue-soft)}
+.lf .ph{display:grid;grid-template-columns:118px 1fr;gap:8px}
+.lf select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23aaa' stroke-width='3'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:30px}
+.lf .err{display:none;font-size:13.5px;color:#ff8a80}
+.lf .err.on{display:block}
+.lf .cta{width:100%;margin-top:6px}
+.consent{font-size:12.5px;line-height:1.5;color:var(--faint);margin:2px 0 0}
+.consent a{color:var(--dim)}
 .back{all:unset;cursor:pointer;margin-top:22px;font-family:var(--fd);font-weight:600;font-size:14px;color:var(--dim);padding:8px 0}
 .back:hover{color:#fff}
 
@@ -182,6 +194,7 @@ footer .risk{max-width:70ch;margin:14px auto 0;font-size:11.5px;color:rgba(255,2
 
 <script>
 (function(){
+  const ENDPOINT=''; // URL de la aplicación web de Apps Script (termina en /exec)
   const JOIN='https://chat.whatsapp.com/C3Ri1reaEli3UMuUoK0G9G';
   const Q=[
     {t:'¿Cuánto tiempo llevas operando en los mercados?',o:['Aún no opero','Menos de 1 año','Entre 1 y 3 años','Más de 3 años']},
@@ -197,13 +210,42 @@ footer .risk{max-width:70ch;margin:14px auto 0;font-size:11.5px;color:rgba(255,2
   ];
   const quiz=document.getElementById('quiz'),body=document.getElementById('qbody'),prog=document.getElementById('prog');
   const keepParams=u=>{try{const s=new URLSearchParams(location.search);const t=new URL(u);s.forEach((v,k)=>{if(/^utm_|^fbclid$|^gclid$/.test(k))t.searchParams.set(k,v)});return t.toString()}catch(e){return u}};
-  let i=0,ans=[];
+  let i=-1,ans=[],lead=null;
+  const qs=new URLSearchParams(location.search);
+  const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,8);
+  function send(status,extra){if(!ENDPOINT||!lead)return;const d=Object.assign({id:lead.id,name:lead.name,email:lead.email,phone:lead.phone,country:lead.country,status,page:location.href.split('?')[0]},extra||{});
+    ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','fbclid'].forEach(k=>{if(qs.get(k))d[k]=qs.get(k)});
+    try{fetch(ENDPOINT,{method:'POST',mode:'no-cors',keepalive:true,headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(d)})}catch(e){}}
+  const CC=[['+52','🇲🇽 +52','México'],['+593','🇪🇨 +593','Ecuador'],['+57','🇨🇴 +57','Colombia'],['+51','🇵🇪 +51','Perú'],['+56','🇨🇱 +56','Chile'],['+54','🇦🇷 +54','Argentina'],['+58','🇻🇪 +58','Venezuela'],['+507','🇵🇦 +507','Panamá'],['+506','🇨🇷 +506','Costa Rica'],['+502','🇬🇹 +502','Guatemala'],['+591','🇧🇴 +591','Bolivia'],['+595','🇵🇾 +595','Paraguay'],['+598','🇺🇾 +598','Uruguay'],['+1','🇺🇸 +1','Estados Unidos'],['+34','🇪🇸 +34','España']];
+  function leadStep(){
+    prog.style.width='4%';
+    const v=lead||{};
+    body.innerHTML=`<div class="step"><div class="qk">Antes de empezar</div><h2 class="qt">¿A dónde te enviamos tu diagnóstico?</h2><p class="lead-sub">Déjanos tus datos para darte tu resultado y tu acceso al grupo del Club de Traders.</p>
+    <form class="lf" id="lf" novalidate>
+      <input id="lfName" type="text" autocomplete="name" placeholder="Tu nombre y apellido" value="${v.name||''}" required>
+      <input id="lfEmail" type="email" autocomplete="email" inputmode="email" placeholder="tu@correo.com" value="${v.email||''}" required>
+      <div class="ph"><select id="lfCc" aria-label="Código de país">${CC.map(c=>`<option value="${c[0]}" data-c="${c[2]}"${(v.cc||'+52')===c[0]?' selected':''}>${c[1]}</option>`).join('')}</select><input id="lfPhone" type="tel" autocomplete="tel-national" inputmode="tel" placeholder="WhatsApp" value="${v.num||''}" required></div>
+      <p class="err" id="lfErr">Revisa tu nombre, correo y número de WhatsApp.</p>
+      <button class="cta orange" type="submit">Empezar mi diagnóstico →</button>
+      <p class="consent">Al continuar aceptas nuestro <a href="terminos.html#privacidad" target="_blank" rel="noopener">aviso de privacidad</a>. Solo usamos tus datos para darte tu acceso y seguimiento.</p>
+    </form></div>`;
+    const f=document.getElementById('lf');
+    f.addEventListener('input',()=>document.getElementById('lfErr').classList.remove('on'));
+    f.addEventListener('submit',e=>{e.preventDefault();
+      const name=document.getElementById('lfName').value.trim(),email=document.getElementById('lfEmail').value.trim(),sel=document.getElementById('lfCc'),num=document.getElementById('lfPhone').value.replace(/[^0-9]/g,'').replace(/^0+/,'');
+      const ok=name.length>=3&&/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(email)&&num.length>=7&&num.length<=13;
+      document.getElementById('lfErr').classList.toggle('on',!ok);if(!ok)return;
+      const isNew=!lead;lead=Object.assign(lead||{id:uid()},{name,email,cc:sel.value,num,phone:sel.value+' '+num,country:sel.selectedOptions[0].dataset.c});
+      send('Lead');i=0;render()});
+    quiz.scrollTop=0;setTimeout(()=>document.getElementById('lfName').focus({preventScroll:true}),60);
+  }
   const L='ABCD';
   function render(){
-    prog.style.width=((i)/Q.length*100)+'%';
+    if(i<0)return leadStep();
+    prog.style.width=(8+(i)/Q.length*92)+'%';
     if(i>=Q.length)return result();
     const q=Q[i];
-    body.innerHTML=`<div class="step"><div class="qk">Pregunta ${i+1} de ${Q.length}</div><h2 class="qt">${q.t}</h2><div class="opts">${q.o.map((o,j)=>`<button class="opt${ans[i]===j?' sel':''}" type="button" data-j="${j}"><span class="l">${L[j]}</span><span>${o}</span></button>`).join('')}</div>${i>0?'<button class="back" type="button" data-back>← Anterior</button>':''}</div>`;
+    body.innerHTML=`<div class="step"><div class="qk">Pregunta ${i+1} de ${Q.length}</div><h2 class="qt">${q.t}</h2><div class="opts">${q.o.map((o,j)=>`<button class="opt${ans[i]===j?' sel':''}" type="button" data-j="${j}"><span class="l">${L[j]}</span><span>${o}</span></button>`).join('')}</div><button class="back" type="button" data-back>← Anterior</button></div>`;
     body.querySelectorAll('.opt').forEach(b=>b.addEventListener('click',()=>{ans[i]=+b.dataset.j;b.classList.add('sel');setTimeout(()=>{i++;render()},220)}));
     const bk=body.querySelector('[data-back]');if(bk)bk.addEventListener('click',()=>{i--;render()});
     const f=body.querySelector('.opt');if(f)f.focus({preventScroll:true});
@@ -212,11 +254,13 @@ footer .risk{max-width:70ch;margin:14px auto 0;font-size:11.5px;color:rgba(255,2
   function result(){
     prog.style.width='100%';
     const score=ans.reduce((a,b)=>a+b,0);let r=R[0];R.forEach(x=>{if(score>=x.min)r=x});
+    send('Completó test',{profile:(r.name+' '+r.em).trim(),score,answers:ans.map((a,k)=>Q[k].o[a])});
     body.innerHTML=`<div class="step"><span class="res-badge">Tu diagnóstico está listo</span><h2 class="res-name">${r.name}${r.em?` <em>${r.em}</em>`:''}</h2><p class="res-p">${r.p}</p><div class="next"><b>Tu siguiente paso</b><ul>${r.n.map(x=>`<li>${x}</li>`).join('')}</ul></div><a class="cta orange res-cta" href="${JOIN}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.4-.3z"/></svg>Entrar al grupo de WhatsApp</a><p class="res-note">Es gratis. En el grupo te damos la bienvenida y tu acceso a la comunidad del Club de Traders.</p><button class="back" type="button" data-again>↺ Repetir diagnóstico</button></div>`;
     body.querySelector('[data-again]').addEventListener('click',()=>{i=0;ans=[];render()});
+    body.querySelector('.res-cta').addEventListener('click',()=>send('Clic WhatsApp'));
     quiz.scrollTop=0;
   }
-  function open(){i=0;ans=[];quiz.classList.add('open');document.body.style.overflow='hidden';render();try{yt('pauseVideo')}catch(e){}}
+  function open(){i=lead?0:-1;ans=[];quiz.classList.add('open');document.body.style.overflow='hidden';render();try{yt('pauseVideo')}catch(e){}}
   function close(){quiz.classList.remove('open');document.body.style.overflow=''}
   document.querySelectorAll('[data-start]').forEach(b=>b.addEventListener('click',open));
   document.getElementById('qclose').addEventListener('click',close);
