@@ -57,7 +57,7 @@ h1 em{font-style:normal;color:var(--blue-soft)}
 .h2{font-family:var(--fd);font-weight:700;font-size:clamp(26px,4vw,38px);line-height:1.1;letter-spacing:-.02em;margin:0 auto;max-width:22ch}
 .lede{font-size:16px;line-height:1.6;color:var(--dim);max-width:54ch;margin:14px auto 0}
 .gets{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:700px;margin:34px auto 0;text-align:left}
-.gets div{display:flex;gap:12px;padding:18px 18px;border-radius:14px;background:var(--card);border:1px solid var(--line);font-size:15.5px;line-height:1.5;color:rgba(255,255,255,.85)}
+.gets div{display:flex;gap:14px;padding:18px 18px;border-radius:14px;background:var(--card);border:1px solid var(--line);font-size:15.5px;line-height:1.5;color:rgba(255,255,255,.85)}
 .gets div::before{content:"";flex:none;width:20px;height:20px;margin-top:1px;border-radius:50%;background:var(--turq) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23080808' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5L19 7'/%3E%3C/svg%3E") center/12px no-repeat}
 .profiles{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:34px;text-align:left}
 .pf{padding:24px 22px;border-radius:16px;background:var(--card);border:1px solid var(--line)}
@@ -66,6 +66,13 @@ h1 em{font-style:normal;color:var(--blue-soft)}
 .pf p{margin:10px 0 0;font-size:15px;line-height:1.6;color:var(--dim)}
 .pf .fit{margin-top:14px;padding-top:12px;border-top:1px solid var(--line);font-size:14px;line-height:1.5;color:rgba(255,255,255,.8)}
 .pf .fit b{color:var(--turq);font-weight:600}
+.gets b{display:block;font-family:var(--fd);font-weight:700;font-size:16.5px;letter-spacing:-.01em;color:#fff}
+.gets span{display:block;margin-top:4px;font-size:14.5px;line-height:1.55;color:var(--dim)}
+.chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:20px auto 0}
+.chips span{padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.05);border:1px solid var(--line);font-size:13.5px;font-weight:500;color:rgba(255,255,255,.82)}
+.vlabel{position:relative;z-index:2;margin:44px 0 0;font-family:var(--fm);font-weight:700;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--orange)}
+.vlabel+.vid{margin-top:14px}
+.final p{font-size:16px;line-height:1.6;color:var(--dim);max-width:44ch;margin:12px auto 0}
 
 /* Cierre */
 .final{position:relative;z-index:2;margin-top:80px;padding:44px 24px;border-radius:20px;text-align:center;background:linear-gradient(160deg,#121a3a,#0d0d0d 70%);border:1px solid var(--line)}
@@ -97,11 +104,14 @@ footer .risk{max-width:70ch;margin:14px auto 0;font-size:11.5px;color:rgba(255,2
 
 <main>
   <section class="hero wrap">
-    <span class="eb">Club de Traders · Gratis</span>
-    <h1>Únete al <em>Club de Traders</em></h1>
-    <p class="sub">Entra gratis al grupo de WhatsApp de Global Macro: análisis macro, sesiones en vivo con el equipo y una comunidad que opera con la misma metodología.</p>
-    <a class="cta" href="https://chat.whatsapp.com/C3Ri1reaEli3UMuUoK0G9G" target="_blank" rel="noopener" data-join><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.4-.3z"/></svg>Entrar al grupo de WhatsApp</a>
-    <p class="note">Es gratis. Al entrar te damos la bienvenida y tu acceso a la comunidad.</p>
+    <span class="eb">Club de Traders · Acceso gratis</span>
+    <h1>¡Únete al <em>Club de Traders!</em></h1>
+    <p class="sub">Entra gratis al grupo de WhatsApp de Global Macro y aprende a leer el mercado como un profesional.</p>
+    <div class="chips"><span>📊 Análisis macro</span><span>🎥 Lives con el equipo</span><span>🤝 Comunidad de traders</span></div>
+    <a class="cta" href="https://chat.whatsapp.com/C3Ri1reaEli3UMuUoK0G9G" target="_blank" rel="noopener" data-join><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.4-.3z"/></svg>¡Entrar al grupo gratis!</a>
+    <p class="note">¡Es 100% gratis! Al entrar te damos la bienvenida y tu acceso a la comunidad.</p>
+
+    <p class="vlabel">▶ Mira este video antes de entrar</p>
 
     <div class="vid" id="vid">
       <iframe id="yt" title="Club de Traders · Introducción" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen
@@ -117,30 +127,31 @@ footer .risk{max-width:70ch;margin:14px auto 0;font-size:11.5px;color:rgba(255,2
   </section>
 
   <section class="sec wrap">
-    <h2 class="h2">Lo que tienes al entrar al Club</h2>
+    <h2 class="h2">¡Esto es lo que tienes al entrar!</h2>
     <div class="gets">
-      <div>Introducción a la macroeconomía aplicada al trading</div>
-      <div>Canales de análisis macro y resultados</div>
-      <div>Sesiones abiertas en vivo con el equipo</div>
-      <div>Comunidad de traders que operan la misma metodología</div>
+      <div><p style="margin:0"><b>Macroeconomía aplicada</b><span>Entiende qué mueve el precio: tasas, inflación y bancos centrales.</span></p></div>
+      <div><p style="margin:0"><b>Análisis macro y resultados</b><span>Lecturas del mercado y los resultados del equipo, cada semana.</span></p></div>
+      <div><p style="margin:0"><b>Lives con el equipo</b><span>Sesiones abiertas en vivo para ver cómo se opera en tiempo real.</span></p></div>
+      <div><p style="margin:0"><b>Comunidad Global Macro</b><span>Traders que operan con la misma metodología que tú.</span></p></div>
     </div>
   </section>
 
   <section class="sec wrap">
-    <h2 class="h2">Hay un lugar para ti en cualquier etapa</h2>
-    <p class="lede">No importa si apenas empiezas o si ya operas con datos macro: el Club te da el siguiente paso.</p>
+    <h2 class="h2">¡Hay un lugar para ti, sin importar tu etapa!</h2>
+    <p class="lede">Si apenas empiezas o si ya operas con datos macro, en el Club encuentras tu siguiente paso.</p>
     <div class="profiles">
-      <article class="pf"><span class="n">PERFIL 01</span><h3>Explorador</h3><p>Te interesan los mercados pero todavía no tienes un método. Quieres entender cómo funcionan antes de arriesgar tu dinero.</p><p class="fit"><b>En el Club:</b> empiezas con la introducción a la macroeconomía y ves en vivo cómo se lee el mercado.</p></article>
-      <article class="pf"><span class="n">PERFIL 02</span><h3>Operador en desarrollo</h3><p>Ya operas, pero tus resultados dependen de señales o del gráfico. Te falta el contexto que mueve el precio.</p><p class="fit"><b>En el Club:</b> aprendes a convertir tasas, inflación y empleo en un sesgo antes de operar.</p></article>
-      <article class="pf"><span class="n">PERFIL 03</span><h3>Trader Macro</h3><p>Lees datos, tasas y bancos centrales. Buscas un proceso profesional, comunidad y el camino para escalar tu capital.</p><p class="fit"><b>En el Club:</b> conectas con traders de tu nivel y conoces la ruta hacia Terminal y el Acelerador.</p></article>
+      <article class="pf"><span class="n">PERFIL 01</span><h3>Explorador</h3><p>Te interesan los mercados, pero todavía no tienes un método. Quieres entender cómo funcionan antes de arriesgar tu dinero.</p><p class="fit"><b>En el Club:</b> ¡empiezas desde cero con la introducción a la macroeconomía y ves en vivo cómo se lee el mercado!</p></article>
+      <article class="pf"><span class="n">PERFIL 02</span><h3>Operador en desarrollo</h3><p>Ya operas, pero tus resultados dependen de señales o del gráfico. Te falta el contexto que mueve el precio.</p><p class="fit"><b>En el Club:</b> ¡aprendes a convertir tasas, inflación y empleo en un sesgo claro antes de operar!</p></article>
+      <article class="pf"><span class="n">PERFIL 03</span><h3>Trader Macro</h3><p>Lees datos, tasas y bancos centrales. Buscas un proceso profesional, comunidad y el camino para escalar tu capital.</p><p class="fit"><b>En el Club:</b> ¡conectas con traders de tu nivel y conoces la ruta hacia la Terminal y el Acelerador!</p></article>
     </div>
   </section>
 
   <section class="wrap">
     <div class="final">
       <span class="eb">Acceso gratuito</span>
-      <h2 class="h2" style="margin-top:12px">Tu lugar en el Club está a un clic</h2>
-      <a class="cta" href="https://chat.whatsapp.com/C3Ri1reaEli3UMuUoK0G9G" target="_blank" rel="noopener" data-join><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.4-.3z"/></svg>Entrar al grupo de WhatsApp</a>
+      <h2 class="h2" style="margin-top:12px">¡Tu lugar en el Club está a un clic!</h2>
+      <p>Únete hoy y empieza a operar con contexto, no con impulso.</p>
+      <a class="cta" href="https://chat.whatsapp.com/C3Ri1reaEli3UMuUoK0G9G" target="_blank" rel="noopener" data-join><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.4-.3z"/></svg>¡Entrar al grupo gratis!</a>
     </div>
   </section>
 </main>
